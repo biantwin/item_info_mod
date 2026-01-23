@@ -18,7 +18,7 @@ public class ItemNameInfoProvider implements IItemInfoProvider {
         
         String itemName = itemStack.hasCustomHoverName() ? 
             itemStack.getDisplayName().getString() : itemStack.getItem().getDescriptionId();
-        MessageUtils.sendCopyableMessageToPlayer(player, "§a[物品信息] §f你手持的物品: §b" + itemName, itemName);
+        MessageUtils.sendCopyableMessageToPlayer(player, "§a[物品ID] §f你手持的物品ID: §b" + itemName, itemName);
         
         return true;
     }

@@ -20,7 +20,7 @@ public class DurabilityInfoProvider implements IItemInfoProvider {
         int currentDurability = maxDurability - itemStack.getDamageValue();
         int durabilityPercent = (int) (((double) currentDurability / maxDurability) * 100);
         
-        String durabilityText = "§a[耐久信息] §f物品耐久: §b" + currentDurability + "§f/§b" + maxDurability + " §7(" + durabilityPercent + "%§7)";
+        String durabilityText = "§a[耐久] §f物品耐久: §b" + currentDurability + "§f/§b" + maxDurability + " §7(" + durabilityPercent + "%§7)";
         MessageUtils.sendCopyableMessageToPlayer(player, durabilityText, currentDurability + "/" + maxDurability);
         
         return true;

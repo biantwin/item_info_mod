@@ -23,12 +23,8 @@ public class FoodInfoProvider implements IItemInfoProvider {
             float saturationModifier = foodProperties.getSaturationModifier();
             float actualSaturation = (float) nutrition * saturationModifier;
             
-            String foodName = itemStack.getDisplayName().getString();
-            String nutritionText = "§a[食物信息] §f食物的饱食度: §b" + nutrition;
-            String saturationText = "§a[食物信息] §f食物的饱和度: §b" + actualSaturation;
-            
-            // 发送食物名称
-            MessageUtils.sendCopyableMessageToPlayer(player, "§a[食物信息] §f你手持的食物是: §b" + foodName, foodName);
+            String nutritionText = "§a[饱食度] §f食物的饱食度: §b" + nutrition;
+            String saturationText = "§a[饱和度] §f食物的饱和度: §b" + actualSaturation;
             
             // 发送饱食度
             MessageUtils.sendCopyableMessageToPlayer(player, nutritionText, String.valueOf(nutrition));

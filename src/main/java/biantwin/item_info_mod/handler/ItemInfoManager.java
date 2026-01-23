@@ -14,11 +14,10 @@ public class ItemInfoManager {
     static {
         // 注册所有信息提供者
         // 注意：我们按照优先级顺序添加提供者，更具体的信息类型优先
-        providers.add(new NBTInfoProvider());          // NBT信息（最高优先级）
-        providers.add(new EnergyFluidInfoProvider());  // 能源/流体信息
+        providers.add(new NBTInfoProvider());          // NBT信息
         providers.add(new DurabilityInfoProvider());   // 耐久信息
         providers.add(new FoodInfoProvider());         // 食物信息
-        providers.add(new ItemNameInfoProvider());     // 物品名称（最低优先级）
+        providers.add(new ItemNameInfoProvider());     // 物品名称
     }
     
     /**
@@ -28,12 +27,13 @@ public class ItemInfoManager {
      * @return 如果至少有一个提供者成功提供信息则返回true
      */
     public static boolean displayItemInfo(Player player, ItemStack itemStack) {
+        boolean displayedAnyInfo = false;
         for (IItemInfoProvider provider : providers) {
             if (provider.provideInfo(player, itemStack)) {
-                return true;
+                displayedAnyInfo = true;
             }
         }
-        return false;
+        return displayedAnyInfo;
     }
     public static void addProvider(IItemInfoProvider provider) {
         providers.add(provider);

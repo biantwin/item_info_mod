@@ -17,7 +17,7 @@ public class NBTInfoProvider implements IItemInfoProvider {
         }
         
         String nbtData = (itemStack.getTag() != null) ? itemStack.getTag().toString() : "无NBT数据";
-        String nbtText = "§a[物品NBT] §f当前手持物品的NBT数据:§b " + nbtData;
+        String nbtText = "§a[NBT] §f当前手持物品的NBT数据:§b " + nbtData;
         MessageUtils.sendCopyableMessageToPlayer(player, nbtText, nbtData);
         
         return true;
