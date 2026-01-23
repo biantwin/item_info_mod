@@ -1,6 +1,7 @@
-package biantwin.item_info_mod.handler;
+package biantwin.item_info_mod.handlers;
 
 import biantwin.item_info_mod.Config;
+import biantwin.item_info_mod.info_provider.FoodInfoProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 

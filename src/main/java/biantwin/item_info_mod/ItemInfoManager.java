@@ -1,5 +1,6 @@
-package biantwin.item_info_mod.handler;
+package biantwin.item_info_mod;
 
+import biantwin.item_info_mod.info_provider.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
@@ -12,8 +13,6 @@ public class ItemInfoManager {
     private static final List<IItemInfoProvider> providers = new ArrayList<>();
     
     static {
-        // 注册所有信息提供者
-        // 注意：我们按照优先级顺序添加提供者，更具体的信息类型优先
         providers.add(new NBTInfoProvider());          // NBT信息
         providers.add(new DurabilityInfoProvider());   // 耐久信息
         providers.add(new FoodInfoProvider());         // 食物信息

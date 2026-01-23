@@ -1,7 +1,7 @@
 package biantwin.item_info_mod;
 
-import biantwin.item_info_mod.handler.CommandHandler;
-import biantwin.item_info_mod.handler.InputHandler;
+import biantwin.item_info_mod.command.CommandHandler;
+import biantwin.item_info_mod.event.InputHandler;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.commands.Commands;
 import net.minecraftforge.client.event.InputEvent;

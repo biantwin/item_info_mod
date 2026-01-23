@@ -1,4 +1,4 @@
-package biantwin.item_info_mod.handler;
+package biantwin.item_info_mod.info_provider;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

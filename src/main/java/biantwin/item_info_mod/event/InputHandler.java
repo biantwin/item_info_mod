@@ -1,6 +1,7 @@
-package biantwin.item_info_mod.handler;
+package biantwin.item_info_mod.event;
 
 import biantwin.item_info_mod.Config;
+import biantwin.item_info_mod.ItemInfoManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

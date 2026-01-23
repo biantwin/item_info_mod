@@ -1,4 +1,4 @@
-package biantwin.item_info_mod.handler;
+package biantwin.item_info_mod.info_provider;
 
 import biantwin.item_info_mod.Config;
 import biantwin.item_info_mod.util.MessageUtils;
@@ -6,9 +6,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 /**
- * 物品名称信息提供者
+ * NBT信息提供者
  */
-public class ItemNameInfoProvider implements IItemInfoProvider {
+public class NBTInfoProvider implements IItemInfoProvider {
     
     @Override
     public boolean provideInfo(Player player, ItemStack itemStack) {
@@ -16,20 +16,20 @@ public class ItemNameInfoProvider implements IItemInfoProvider {
             return false;
         }
         
-        String itemName = itemStack.hasCustomHoverName() ? 
-            itemStack.getDisplayName().getString() : itemStack.getItem().getDescriptionId();
-        MessageUtils.sendCopyableMessageToPlayer(player, "§a[物品ID] §f你手持的物品ID: §b" + itemName, itemName);
+        String nbtData = (itemStack.getTag() != null) ? itemStack.getTag().toString() : "无NBT数据";
+        String nbtText = "§a[NBT] §f当前手持物品的NBT数据:§b " + nbtData;
+        MessageUtils.sendCopyableMessageToPlayer(player, nbtText, nbtData);
         
         return true;
     }
     
     @Override
     public String getName() {
-        return "itemName";
+        return "nbtInfo";
     }
     
     @Override
     public boolean isEnabled() {
-        return Config.isEnableItemName();
+        return Config.isEnableNBTInfo();
     }
 }

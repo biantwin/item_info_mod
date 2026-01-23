@@ -1,4 +1,4 @@
-package biantwin.item_info_mod.handler;
+package biantwin.item_info_mod.info_provider;
 
 import biantwin.item_info_mod.Config;
 import biantwin.item_info_mod.util.MessageUtils;

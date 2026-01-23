@@ -1,4 +1,4 @@
-package biantwin.item_info_mod.handler;
+package biantwin.item_info_mod.command;
 
 import biantwin.item_info_mod.Config;
 import com.mojang.brigadier.Command;
