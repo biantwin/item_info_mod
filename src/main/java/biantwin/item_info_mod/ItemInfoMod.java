@@ -19,68 +19,66 @@ public class ItemInfoMod {
 
     public static final String MOD_ID = "item_info_mod";
 
-    // 定义按键映射
     public static KeyMapping itemInfoKey;
 
     public ItemInfoMod() {
         MinecraftForge.EVENT_BUS.register(this);
 
-        // 初始化按键映射
         itemInfoKey = new KeyMapping(
                 "key.iteminfo.showinfo", // 按键名称
                 GLFW.GLFW_KEY_B,         // 默认按键 B
                 "key.categories.misc"    // 按键分类
         );
 
-        // 注册配置
         Config.register();
     }
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.Key event) {
-        // 检查是否按下了B键
         if (itemInfoKey.consumeClick()) {
             InputHandler.handleItemInfoRequest();
         }
     }
 
-    // 监听配置变化事件
     @SubscribeEvent
     public void onConfigChanged(final ModConfigEvent event) {
         Config.sync();
     }
 
-    // 注册命令
     @SubscribeEvent
     public void onRegisterCommands(RegisterCommandsEvent event) {
         var dispatcher = event.getDispatcher();
         dispatcher.register(
                 Commands.literal("iteminfo")
                         .then(Commands.literal("item")
-                                .then(Commands.literal("on")
+                                .then(Commands.literal("true")
                                         .executes(CommandHandler::enableItemInfo))
-                                .then(Commands.literal("off")
+                                .then(Commands.literal("false")
                                         .executes(CommandHandler::disableItemInfo)))
                         .then(Commands.literal("food")
-                                .then(Commands.literal("on")
+                                .then(Commands.literal("true")
                                         .executes(CommandHandler::enableFoodInfo))
-                                .then(Commands.literal("off")
+                                .then(Commands.literal("false")
                                         .executes(CommandHandler::disableFoodInfo)))
                         .then(Commands.literal("nbt")
-                                .then(Commands.literal("on")
+                                .then(Commands.literal("true")
                                         .executes(CommandHandler::enableNBTInfo))
-                                .then(Commands.literal("off")
+                                .then(Commands.literal("false")
                                         .executes(CommandHandler::disableNBTInfo)))
+                        .then(Commands.literal("durability")  // 新增耐久命令
+                                .then(Commands.literal("true")
+                                        .executes(CommandHandler::enableDurabilityInfo))
+                                .then(Commands.literal("false")
+                                        .executes(CommandHandler::disableDurabilityInfo)))
                         .then(Commands.literal("name")
-                                .then(Commands.literal("on")
+                                .then(Commands.literal("true")
                                         .executes(CommandHandler::enableItemName))
-                                .then(Commands.literal("off")
+                                .then(Commands.literal("false")
                                         .executes(CommandHandler::disableItemName)))
                         .executes(CommandHandler::showStatus)
         );
     }
 
-    // 注册按键映射 - 这个方法会在MOD总线上调用
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModBusEvents {
         @SubscribeEvent

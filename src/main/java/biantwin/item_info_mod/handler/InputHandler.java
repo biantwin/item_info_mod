@@ -4,6 +4,7 @@ import biantwin.item_info_mod.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+
 public class InputHandler {
     
     /**
@@ -24,15 +25,7 @@ public class InputHandler {
             return;
         }
         
-        boolean displayedAnyInfo = false;
-        
-        if (NBTInfoHandler.displayNBTInfo(player, heldItem)) {
-            displayedAnyInfo = true;
-        } else if (FoodInfoHandler.displayFoodInfo(player, heldItem)) {
-            displayedAnyInfo = true;
-        } else if (ItemNameHandler.displayItemName(player, heldItem)) {
-            displayedAnyInfo = true;
-        }
+        boolean displayedAnyInfo = ItemInfoManager.displayItemInfo(player, heldItem);
         
         if (!displayedAnyInfo) {
             player.displayClientMessage(net.minecraft.network.chat.Component.literal("§c[物品信息] §f没有可用的信息要显示"), false);

@@ -11,11 +11,13 @@ public class Config {
     private static ForgeConfigSpec.BooleanValue enableFoodInfoSpec;
     private static ForgeConfigSpec.BooleanValue enableNBTInfoSpec;
     private static ForgeConfigSpec.BooleanValue enableItemNameSpec;
+    private static ForgeConfigSpec.BooleanValue enableDurabilityInfoSpec; // 新增耐久信息配置
     
     public static boolean enableItemInfo = true;
     public static boolean enableFoodInfo = true;
     public static boolean enableNBTInfo = false;
     public static boolean enableItemName = true;
+    public static boolean enableDurabilityInfo = true; // 新增耐久信息配置
 
     public static final ForgeConfigSpec SPEC;
     private static final Config CONFIG;
@@ -46,6 +48,12 @@ public class Config {
                 .comment("Whether to show item name for non-food items.")
                 .translation("item_info_mod.config.enableItemName")
                 .define("enableItemName", true);
+        
+        // 新增耐久信息配置
+        enableDurabilityInfoSpec = builder
+                .comment("Whether to show item durability information when holding damageable items.")
+                .translation("item_info_mod.config.enableDurabilityInfo")
+                .define("enableDurabilityInfo", true);
     }
 
     public static void register() {
@@ -54,19 +62,53 @@ public class Config {
     }
 
     public static boolean isEnableItemInfo() {
-        return enableItemInfoSpec.get();
+        try {
+            return enableItemInfoSpec != null ? enableItemInfoSpec.get() : enableItemInfo;
+        } catch (Exception e) {
+            // 如果配置未初始化，返回静态默认值
+            return enableItemInfo;
+        }
     }
     
     public static boolean isEnableFoodInfo() {
-        return enableFoodInfoSpec.get();
+        try {
+            return enableFoodInfoSpec != null ? enableFoodInfoSpec.get() : enableFoodInfo;
+        } catch (Exception e) {
+            // 如果配置未初始化，返回静态默认值
+            return enableFoodInfo;
+        }
     }
     
     public static boolean isEnableNBTInfo() {
-        return enableNBTInfoSpec.get();
+        try {
+            return enableNBTInfoSpec != null ? enableNBTInfoSpec.get() : enableNBTInfo;
+        } catch (Exception e) {
+            // 如果配置未初始化，返回静态默认值
+            return enableNBTInfo;
+        }
     }
     
     public static boolean isEnableItemName() {
-        return enableItemNameSpec.get();
+        try {
+            return enableItemNameSpec != null ? enableItemNameSpec.get() : enableItemName;
+        } catch (Exception e) {
+            // 如果配置未初始化，返回静态默认值
+            return enableItemName;
+        }
+    }
+    
+    // 新增耐久信息相关方法
+    public static boolean isEnableDurabilityInfo() {
+        try {
+            return enableDurabilityInfoSpec != null ? enableDurabilityInfoSpec.get() : enableDurabilityInfo;
+        } catch (Exception e) {
+            // 如果配置未初始化，返回静态默认值
+            return enableDurabilityInfo;
+        }
+    }
+    
+    public static void setEnableDurabilityInfo(boolean value) {
+        enableDurabilityInfo = value;
     }
     
     public static void sync() {
@@ -74,6 +116,7 @@ public class Config {
         enableFoodInfo = enableFoodInfoSpec.get();
         enableNBTInfo = enableNBTInfoSpec.get();
         enableItemName = enableItemNameSpec.get();
+        enableDurabilityInfo = enableDurabilityInfoSpec.get(); // 添加同步
     }
     
     public static void setEnableItemInfo(boolean value) {
